@@ -1,61 +1,47 @@
 # AI Lead Response Automation with n8n
 
-## Overview
+An n8n automation I built to process incoming leads and help a manager respond faster.
 
-AI-powered lead management workflow that automatically processes incoming customer requests, evaluates their priority, and notifies a manager with actionable insights.
+The workflow receives a new request from Google Forms, saves the lead data to Google Sheets, analyzes the message with an LLM and assigns a priority level. The result is then sent to a manager in Telegram together with a suggested response.
 
-The system receives lead information from Google Forms, analyzes the request using AI, stores structured data in Google Sheets, and delivers a complete summary to Telegram.
+## Result
 
-## Business Problem
+![Processed leads](results.png)
 
-Businesses often lose potential customers because new requests are processed manually, without prioritization, or with delayed responses.
+For every incoming request, the workflow stores:
 
-Managers need to quickly understand:
+- customer information;
+- original message;
+- generated reply;
+- processing status;
+- lead type;
+- priority level.
 
-- what the customer is requesting;
-- how important the lead is;
-- whether immediate action is required;
-- what response should be sent.
+I used **Low / Medium / High** priority levels so that the most important requests could be noticed first.
 
-## Solution
+## How it works
 
-This project automates the complete lead processing workflow.
+The main flow is:
 
-The system can:
+**Google Forms → n8n → Google Sheets → AI analysis → Telegram**
 
-- receive customer requests from Google Forms;
-- save all lead information to Google Sheets;
-- analyze the request using AI;
-- determine the lead priority;
-- generate a suggested response;
-- notify a manager in Telegram with all relevant information.
+1. A customer submits a form.
+2. n8n receives the lead.
+3. The lead is stored in Google Sheets.
+4. The message is analyzed with an LLM.
+5. A priority level is assigned.
+6. A suggested response is generated.
+7. The manager receives the result in Telegram.
 
-## Workflow
+## Demo
 
-1. A customer submits a Google Form.
-2. The automation receives the form data.
-3. Lead information is saved to Google Sheets.
-4. AI analyzes the request.
-5. AI determines the priority level.
-6. AI generates a suggested reply.
-7. A Telegram notification is sent to the manager containing:
-   - customer request;
-   - priority level;
-   - AI-generated response suggestion.
+[Watch the demo](demo.mp4)
 
-## My Role
+## Why I built it
 
-Designed and implemented the entire automation workflow independently.
+I wanted to automate the repetitive part of lead intake.
 
-Responsibilities included:
-
-- workflow architecture;
-- Google Forms integration;
-- Google Sheets integration;
-- AI prompt engineering;
-- lead prioritization logic;
-- Telegram Bot integration;
-- testing and optimization.
+Instead of manually opening every new request, reviewing it and deciding how urgent it is, the workflow prepares the important information automatically. The final decision still stays with the manager.
 
 ## Technologies
 
@@ -64,17 +50,9 @@ Responsibilities included:
 - Google Forms
 - Google Sheets
 - Telegram Bot API
-- Prompt Engineering
-- Workflow Automation
 
-## Future Improvements
+## Current status
 
-- CRM integration;
-- automatic lead assignment;
-- manager approval buttons in Telegram;
-- automatic customer response after approval;
-- lead analytics dashboard.
+This is a functional prototype.
 
-## Note
-
-This is a personal practice project created to explore AI-powered business automation workflows.
+The workflow was built and tested with sample lead data. The original n8n instance is no longer active, but the repository contains a demo and an example of the processed output.
